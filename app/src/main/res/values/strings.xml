@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Quiz</string>
+    <string name="button_true">Prawda</string>
+    <string name="button_false">Fałsz</string>
+    <string name="button_next">Następne</string>
+    <string name="question_1">1. Czy Steve Jobs był jedynym założycielem Apple Inc.?</string>
+    <string name="question_2">2. Czy Steve Jobs został wyrzucony z Apple w 1985 roku?</string>
+    <string name="question_3">3. Czy Steve Jobs wrócił do Apple w 1997 roku po przejęciu NeXT Computer?</string>
+    <string name="question_4">4. Czy pierwszy iPod został wprowadzony na rynek w 2001 roku?</string>
+    <string name="question_5">5. Czy Steve Jobs był głównym pomysłodawcą projektu "Think Different?</string>
+    <string name="question_6">6. Czy Steve Jobs zaprezentował pierwszego iPhone\'a podczas Macworld Expo w 2007 roku?</string>
+    <string name="question_7">7. Czy Steve Jobs był obecny przy wprowadzaniu iPada na rynek w 2010 roku?</string>
+    <string name="question_8">8. Czy firma NeXT Computer założona przez Steve\'a Jobsa skupiała się na produkcji komputerów osobistych?</string>
+    <string name="question_9">9. Czy Steve Jobs był CEO Pixar Animation Studios?</string>
+    <string name="question_10">10. Czy Steve Jobs był zaangażowany w rozwój Macintosh, jednego z pierwszych komercyjnych komputerów Apple?</string>
+    <string name="correct_answer">Poprawna odpowiedź!</string>
+    <string name="incorrect_answer">Niepoprawna odpowiedź.</string>
 </resources>
