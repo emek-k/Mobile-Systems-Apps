@@ -1,8 +1,10 @@
 package com.example.quiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String KEY_CURRENT_INDEX = "current index";
     private Button trueButton;
     private Button falseButton;
     private Button nextButton;
@@ -57,7 +60,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("test", "onCreate is activated.");
+
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState != null){
+            currentIndex = savedInstanceState.getInt(KEY_CURRENT_INDEX);
+            Log.d("test", "restored current index");
+        }
 
         trueButton = findViewById(R.id.true_button);
         falseButton = findViewById(R.id.false_button);
@@ -91,5 +101,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         setNextQuestion();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("test", "onStart is activated.");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("test", "onStop is activated.");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("test", "onDestroy is activated.");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("test", "onPause is activated.");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("test", "onResume is activated.");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d("test", "onSaveInstanceState is activated.");
+        outState.putInt(KEY_CURRENT_INDEX, currentIndex);
     }
 }

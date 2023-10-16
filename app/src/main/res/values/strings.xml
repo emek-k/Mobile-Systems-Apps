@@ -3,6 +3,7 @@
     <string name="button_true">Prawda</string>
     <string name="button_false">Fałsz</string>
     <string name="button_next">Następne</string>
+    <string name="button_hint">Pokaż odpowiedź</string>
     <string name="question_1">1. Czy Steve Jobs był jedynym założycielem Apple Inc.?</string>
     <string name="question_2">2. Czy Steve Jobs został wyrzucony z Apple w 1985 roku?</string>
     <string name="question_3">3. Czy Steve Jobs wrócił do Apple w 1997 roku po przejęciu NeXT Computer?</string>
