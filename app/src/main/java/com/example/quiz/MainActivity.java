@@ -1,8 +1,10 @@
 package com.example.quiz;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,11 +17,17 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     private static final String KEY_CURRENT_INDEX = "current index";
+    public static final String KEY_EXTRA_ANSWER = "com.example.quiz.correctAnswer";
     private Button trueButton;
     private Button falseButton;
     private Button nextButton;
+
+    private Button hintButton;
     private TextView questionTextView;
+    private static final int REQUEST_CODE_PROMPT = 0;
     private int wynik = 0;
+
+    private boolean answerWasShown;
 
     private int currentIndex = 0;
     private Question[] questions = new Question[]{
@@ -39,13 +47,17 @@ public class MainActivity extends AppCompatActivity {
         boolean correctAnswer = questions[currentIndex].isTrueAnswer();
         int resultMessageId = 0;
 
-        if(userAnswer == correctAnswer) {
-            resultMessageId = R.string.correct_answer;
-            wynik++;
+        if(answerWasShown){
+            resultMessageId = R.string.answer_was_shown;
         }
-        else
-            resultMessageId = R.string.incorrect_answer;
-
+        else{
+            if(userAnswer == correctAnswer) {
+                resultMessageId = R.string.correct_answer;
+                wynik++;
+            }
+            else
+                resultMessageId = R.string.incorrect_answer;
+        }
         Toast.makeText(this, resultMessageId, Toast.LENGTH_SHORT).show();
     }
 
@@ -73,7 +85,18 @@ public class MainActivity extends AppCompatActivity {
         falseButton = findViewById(R.id.false_button);
         nextButton = findViewById(R.id.next_button);
         questionTextView = findViewById(R.id.question_text_view);
+        hintButton = findViewById(R.id.hint_button);
 
+        hintButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PromptActivity.class);
+                boolean correctAnswer = questions[currentIndex].isTrueAnswer();
+                intent.putExtra(KEY_EXTRA_ANSWER, correctAnswer);
+                //startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_PROMPT);
+            }
+        });
         trueButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -97,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     wynik=0;
                 }
                 currentIndex = currentIndex % questions.length;
+                answerWasShown = false;
                 setNextQuestion();
             }
         });
@@ -138,5 +162,17 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         Log.d("test", "onSaveInstanceState is activated.");
         outState.putInt(KEY_CURRENT_INDEX, currentIndex);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode != RESULT_OK)
+            return;
+        if(requestCode == REQUEST_CODE_PROMPT){
+            if(data == null)
+                return;
+            answerWasShown = data.getBooleanExtra(PromptActivity.KEY_EXTRA_ANSWER_SHOWN, false);
+        }
     }
 }

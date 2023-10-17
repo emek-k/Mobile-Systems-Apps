@@ -16,4 +16,7 @@
     <string name="question_10">10. Czy Steve Jobs był zaangażowany w rozwój Macintosh, jednego z pierwszych komercyjnych komputerów Apple?</string>
     <string name="correct_answer">Poprawna odpowiedź!</string>
     <string name="incorrect_answer">Niepoprawna odpowiedź.</string>
+    <string name="hint_button_answer">Pokaż odpowiedź</string>
+    <string name="hint_message">Czy napewno chcesz zobaczyć odpowiedź?</string>
+    <string name="answer_was_shown">Użyto podpowiedzi!</string>
 </resources>
